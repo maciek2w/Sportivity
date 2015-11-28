@@ -1,5 +1,5 @@
 //
-//  MWBackendServiceProtocol.h
+//  MWParseLoginManager.h
 //  Sportivity
 //
 //  Created by Maciej Witaszek on 28/11/15.
@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MWLoginManagerProtocol.h"
 
-@protocol MWBackendServiceProtocol <NSObject>
-
-- (BOOL)isUserLoggedIn;
+@interface MWParseLoginManager : NSObject <MWLoginManagerProtocol>
 
 @end

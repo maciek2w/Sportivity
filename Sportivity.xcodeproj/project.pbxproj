@@ -16,6 +16,8 @@
 		D1CA13E11C09AD2400CF5147 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1CA13DF1C09AD2400CF5147 /* LaunchScreen.storyboard */; };
 		D1CA13EC1C09AD2500CF5147 /* SportivityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA13EB1C09AD2500CF5147 /* SportivityTests.m */; };
 		D1CA13F91C09AEBD00CF5147 /* MWParseBackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA13F81C09AEBD00CF5147 /* MWParseBackendService.m */; };
+		D1CA13FD1C09B29300CF5147 /* MWParseLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA13FC1C09B29300CF5147 /* MWParseLoginManager.m */; };
+		D1CA14011C09B3B900CF5147 /* MWBackendSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA14001C09B3B900CF5147 /* MWBackendSelector.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,11 @@
 		D1CA13F71C09AEBD00CF5147 /* MWParseBackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWParseBackendService.h; sourceTree = "<group>"; };
 		D1CA13F81C09AEBD00CF5147 /* MWParseBackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWParseBackendService.m; sourceTree = "<group>"; };
 		D1CA13FA1C09AF4B00CF5147 /* MWBackendServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWBackendServiceProtocol.h; sourceTree = "<group>"; };
+		D1CA13FB1C09B29300CF5147 /* MWParseLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWParseLoginManager.h; sourceTree = "<group>"; };
+		D1CA13FC1C09B29300CF5147 /* MWParseLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWParseLoginManager.m; sourceTree = "<group>"; };
+		D1CA13FE1C09B2A600CF5147 /* MWLoginManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWLoginManagerProtocol.h; sourceTree = "<group>"; };
+		D1CA13FF1C09B3B900CF5147 /* MWBackendSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWBackendSelector.h; sourceTree = "<group>"; };
+		D1CA14001C09B3B900CF5147 /* MWBackendSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWBackendSelector.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,9 +150,14 @@
 		D1CA13F61C09AE1200CF5147 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D1CA13FF1C09B3B900CF5147 /* MWBackendSelector.h */,
+				D1CA14001C09B3B900CF5147 /* MWBackendSelector.m */,
 				D1CA13F71C09AEBD00CF5147 /* MWParseBackendService.h */,
 				D1CA13F81C09AEBD00CF5147 /* MWParseBackendService.m */,
 				D1CA13FA1C09AF4B00CF5147 /* MWBackendServiceProtocol.h */,
+				D1CA13FB1C09B29300CF5147 /* MWParseLoginManager.h */,
+				D1CA13FC1C09B29300CF5147 /* MWParseLoginManager.m */,
+				D1CA13FE1C09B2A600CF5147 /* MWLoginManagerProtocol.h */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -303,9 +315,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1CA13D91C09AD2400CF5147 /* MWMainViewController.m in Sources */,
+				D1CA13FD1C09B29300CF5147 /* MWParseLoginManager.m in Sources */,
 				D1CA13D61C09AD2400CF5147 /* AppDelegate.m in Sources */,
 				D1CA13F91C09AEBD00CF5147 /* MWParseBackendService.m in Sources */,
 				D1CA13D31C09AD2400CF5147 /* main.m in Sources */,
+				D1CA14011C09B3B900CF5147 /* MWBackendSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

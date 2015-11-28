@@ -7,11 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "MWParseBackendService.h"
+#import "MWBackendSelector.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) id<MWBackendServiceProtocol> backendService;
-
+@property (nonatomic, strong) id<MWLoginManagerProtocol> loginManager;
 @end
 
 @implementation AppDelegate
@@ -19,7 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.backendService = [[MWParseBackendService alloc] init];
+    MWBackendSelector *backendSelector = [[MWBackendSelector alloc] initWithBackendName:@"Parse"];
+    self.backendService = backendSelector.backendService;
+    self.loginManager = backendSelector.loginManager;
     
     return YES;
 }
