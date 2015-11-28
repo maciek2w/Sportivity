@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MWBackendServiceProtocol.h"
+#import "MWLoginManagerProtocol.h"
 
 @interface MWMainViewController : UIViewController
-
-
+@property (nonatomic, strong) id<MWBackendServiceProtocol> backendService;
+@property (nonatomic, strong) id<MWLoginManagerProtocol> loginManager;
 @end
 

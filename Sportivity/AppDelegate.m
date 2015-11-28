@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MWBackendSelector.h"
+#import "MWMainViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) id<MWBackendServiceProtocol> backendService;
@@ -22,6 +23,10 @@
     MWBackendSelector *backendSelector = [[MWBackendSelector alloc] initWithBackendName:@"Parse"];
     self.backendService = backendSelector.backendService;
     self.loginManager = backendSelector.loginManager;
+    
+    MWMainViewController *mainVC = (MWMainViewController *)self.window.rootViewController;
+    mainVC.backendService = self.backendService;
+    mainVC.loginManager = self.loginManager;
     
     return YES;
 }
