@@ -7,8 +7,10 @@
 //
 
 #import "MWMainViewController.h"
+#import "MWLoginManagerDelegate.h"
 
-@interface MWMainViewController ()
+@interface MWMainViewController () <MWLoginManagerDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 
 @end
 
@@ -16,12 +18,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.logoutButton.enabled = NO;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ([self.backendService isUserLoggedIn]) {
+        self.logoutButton.enabled = YES;
+    }
+    else {
+        [self.loginManager presentLoginViewControllerInViewController:self];
+    }
 }
 
+- (IBAction)didTapLogout:(id)sender
+{
+    [self.backendService logout];
+    self.logoutButton.enabled = NO;
+    [self.loginManager presentLoginViewControllerInViewController:self];
+}
+
+#pragma mark - MWLoginManagerDelegate
+
+- (void)didLoginUserWithLoginManager:(id<MWLoginManagerProtocol>)loginManager
+{
+    self.logoutButton.enabled = YES;
+}
+
+- (void)loginViewController:(id<MWLoginManagerProtocol>)loginManager didFailToLogInWithError:(NSError *)error
+{
+
+}
 @end

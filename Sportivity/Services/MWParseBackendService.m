@@ -22,4 +22,14 @@
     return self;
 }
 
+- (BOOL)isUserLoggedIn
+{
+    return [PFUser currentUser] != nil;
+}
+
+- (void)logout
+{
+    [PFUser logOut];
+}
+
 @end

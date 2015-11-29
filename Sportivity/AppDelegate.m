@@ -24,7 +24,8 @@
     self.backendService = backendSelector.backendService;
     self.loginManager = backendSelector.loginManager;
     
-    MWMainViewController *mainVC = (MWMainViewController *)self.window.rootViewController;
+    UINavigationController *navVC = (UINavigationController *) self.window.rootViewController;
+    MWMainViewController *mainVC = (MWMainViewController *)navVC.viewControllers.firstObject;
     mainVC.backendService = self.backendService;
     mainVC.loginManager = self.loginManager;
     

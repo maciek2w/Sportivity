@@ -34,6 +34,7 @@
 		135F18EA2F61A679959BDBB1 /* Pods-Sportivity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportivity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sportivity/Pods-Sportivity.debug.xcconfig"; sourceTree = "<group>"; };
 		A3009A6F9836A671B569B5DF /* Pods-Sportivity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportivity.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sportivity/Pods-Sportivity.release.xcconfig"; sourceTree = "<group>"; };
 		ABD24F4D993D8392C13BF97B /* libPods-Sportivity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sportivity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1C57BE51C0B504600D25501 /* MWLoginManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWLoginManagerDelegate.h; sourceTree = "<group>"; };
 		D1CA13CE1C09AD2400CF5147 /* Sportivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sportivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CA13D21C09AD2400CF5147 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1CA13D41C09AD2400CF5147 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -158,6 +159,7 @@
 				D1CA13FB1C09B29300CF5147 /* MWParseLoginManager.h */,
 				D1CA13FC1C09B29300CF5147 /* MWParseLoginManager.m */,
 				D1CA13FE1C09B2A600CF5147 /* MWLoginManagerProtocol.h */,
+				D1C57BE51C0B504600D25501 /* MWLoginManagerDelegate.h */,
 			);
 			path = Services;
 			sourceTree = "<group>";

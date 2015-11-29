@@ -4,7 +4,8 @@
 # use_frameworks!
 
 target 'Sportivity' do
-    pod 'Parse'
+    pod 'Parse', '~> 1.10'
+    pod 'ParseUI', '~> 1.1'
 end
 
 target 'SportivityTests' do

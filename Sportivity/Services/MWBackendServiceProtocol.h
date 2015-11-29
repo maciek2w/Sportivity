@@ -11,5 +11,6 @@
 @protocol MWBackendServiceProtocol <NSObject>
 
 - (BOOL)isUserLoggedIn;
+- (void)logout;
 
 @end
