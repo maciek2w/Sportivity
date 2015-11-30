@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MWActivityProtocol.h"
 
 @protocol MWBackendServiceProtocol <NSObject>
 
 - (BOOL)isUserLoggedIn;
 - (void)logout;
 
+- (void)downloadActivitiesWithBlock:(void (^)(NSArray<id<MWActivityProtocol>> *activities, NSError *error))block;
 @end

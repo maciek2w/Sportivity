@@ -32,4 +32,15 @@
     [PFUser logOut];
 }
 
+- (void)downloadActivitiesWithBlock:(void (^)(NSArray<id<MWActivityProtocol>> *activities, NSError *error))block
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query orderByAscending:@"startsAt"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (block) {
+            block(objects, error);
+        }
+    }];
+}
 @end

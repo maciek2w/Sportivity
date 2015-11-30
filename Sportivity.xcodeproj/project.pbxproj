@@ -35,6 +35,7 @@
 		A3009A6F9836A671B569B5DF /* Pods-Sportivity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportivity.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sportivity/Pods-Sportivity.release.xcconfig"; sourceTree = "<group>"; };
 		ABD24F4D993D8392C13BF97B /* libPods-Sportivity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sportivity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C57BE51C0B504600D25501 /* MWLoginManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWLoginManagerDelegate.h; sourceTree = "<group>"; };
+		D1C57BED1C0CB68A00D25501 /* MWActivityProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWActivityProtocol.h; sourceTree = "<group>"; };
 		D1CA13CE1C09AD2400CF5147 /* Sportivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sportivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CA13D21C09AD2400CF5147 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1CA13D41C09AD2400CF5147 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,6 +95,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D1C57BE61C0B61E600D25501 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D1C57BED1C0CB68A00D25501 /* MWActivityProtocol.h */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D1CA13C51C09AD2400CF5147 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +126,7 @@
 		D1CA13D01C09AD2400CF5147 /* Sportivity */ = {
 			isa = PBXGroup;
 			children = (
+				D1C57BE61C0B61E600D25501 /* Models */,
 				D1CA13F61C09AE1200CF5147 /* Services */,
 				D1CA13D41C09AD2400CF5147 /* AppDelegate.h */,
 				D1CA13D51C09AD2400CF5147 /* AppDelegate.m */,
