@@ -8,12 +8,18 @@
 
 #import "MWMainViewController.h"
 #import "MWLoginManagerDelegate.h"
+#import "MWActivitySummary.h"
+#import "MWDonutChartView.h"
 
 @interface MWMainViewController () <MWLoginManagerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 @property (weak, nonatomic) IBOutlet UITableView *activitiesTableView;
+@property (weak, nonatomic) IBOutlet MWDonutChartView *donutChartView;
 
 @property (nonatomic, strong) NSArray<id<MWActivityProtocol>> *activities;
+//@property (nonatomic, strong) NSArray<MWActivitySummary *> *activitiesSummary;
+@property (nonatomic, strong) NSDictionary<NSString *, NSNumber *> *activitiesSummary;
+@property (nonatomic, assign) NSTimeInterval totalActivitiesSpentTime;
 @property (nonatomic, strong) NSDateFormatter *activityDateFormatter;
 
 @end
@@ -55,13 +61,35 @@
     
     [self.backendService downloadActivitiesWithBlock:^(NSArray<id<MWActivityProtocol>> *activities, NSError *error) {
         if (error) {
-            
+            //TODO add error message
         }
         else {
             self.activities = activities;
+            [self calculateActivitiesSummary];
             [self.activitiesTableView reloadData];
         }
     }];
+}
+
+- (void)calculateActivitiesSummary
+{
+    NSMutableDictionary<NSString *, NSNumber *> *activitiesSummary = [[NSMutableDictionary alloc] init];
+    NSTimeInterval totalActivitiesSpentTime = 0;
+    
+    for (id activity in self.activities) {
+        NSString *type = activity[@"type"];
+        NSTimeInterval typeSpentTime = [activitiesSummary[type] doubleValue];
+        NSTimeInterval activitySpentTime = [activity[@"endsAt"] timeIntervalSinceDate:activity[@"startsAt"]];
+        typeSpentTime += activitySpentTime;
+        totalActivitiesSpentTime += activitySpentTime;
+        
+        activitiesSummary[type] = @(typeSpentTime);
+    }
+    
+    self.activitiesSummary = activitiesSummary;
+    self.totalActivitiesSpentTime = totalActivitiesSpentTime;
+    
+    self.donutChartView.data = self.activitiesSummary;
 }
 
 #pragma mark - MWLoginManagerDelegate

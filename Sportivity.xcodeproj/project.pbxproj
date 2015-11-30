@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		88442F08F167E7D63F058280 /* libPods-Sportivity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD24F4D993D8392C13BF97B /* libPods-Sportivity.a */; };
+		D1C57BF11C0CD91E00D25501 /* MWDonutChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C57BF01C0CD91E00D25501 /* MWDonutChartView.m */; };
 		D1CA13D31C09AD2400CF5147 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA13D21C09AD2400CF5147 /* main.m */; };
 		D1CA13D61C09AD2400CF5147 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA13D51C09AD2400CF5147 /* AppDelegate.m */; };
 		D1CA13D91C09AD2400CF5147 /* MWMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA13D81C09AD2400CF5147 /* MWMainViewController.m */; };
@@ -36,6 +37,8 @@
 		ABD24F4D993D8392C13BF97B /* libPods-Sportivity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sportivity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C57BE51C0B504600D25501 /* MWLoginManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWLoginManagerDelegate.h; sourceTree = "<group>"; };
 		D1C57BED1C0CB68A00D25501 /* MWActivityProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWActivityProtocol.h; sourceTree = "<group>"; };
+		D1C57BEF1C0CD91E00D25501 /* MWDonutChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDonutChartView.h; sourceTree = "<group>"; };
+		D1C57BF01C0CD91E00D25501 /* MWDonutChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWDonutChartView.m; sourceTree = "<group>"; };
 		D1CA13CE1C09AD2400CF5147 /* Sportivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sportivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CA13D21C09AD2400CF5147 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1CA13D41C09AD2400CF5147 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +106,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D1C57BEE1C0CD8A800D25501 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D1C57BEF1C0CD91E00D25501 /* MWDonutChartView.h */,
+				D1C57BF01C0CD91E00D25501 /* MWDonutChartView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D1CA13C51C09AD2400CF5147 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +138,7 @@
 		D1CA13D01C09AD2400CF5147 /* Sportivity */ = {
 			isa = PBXGroup;
 			children = (
+				D1C57BEE1C0CD8A800D25501 /* Views */,
 				D1C57BE61C0B61E600D25501 /* Models */,
 				D1CA13F61C09AE1200CF5147 /* Services */,
 				D1CA13D41C09AD2400CF5147 /* AppDelegate.h */,
@@ -326,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1C57BF11C0CD91E00D25501 /* MWDonutChartView.m in Sources */,
 				D1CA13D91C09AD2400CF5147 /* MWMainViewController.m in Sources */,
 				D1CA13FD1C09B29300CF5147 /* MWParseLoginManager.m in Sources */,
 				D1CA13D61C09AD2400CF5147 /* AppDelegate.m in Sources */,
