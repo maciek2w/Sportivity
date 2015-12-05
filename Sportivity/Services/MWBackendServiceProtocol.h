@@ -12,7 +12,8 @@
 @protocol MWBackendServiceProtocol <NSObject>
 
 - (BOOL)isUserLoggedIn;
-- (void)logout;
+- (void)userWithBlock:(void (^)(NSString *photoUrl, NSString *username))block;
 
+- (void)logout;
 - (void)downloadActivitiesWithBlock:(void (^)(NSArray<id<MWActivityProtocol>> *activities, NSError *error))block;
 @end

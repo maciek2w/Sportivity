@@ -43,4 +43,20 @@
         }
     }];
 }
+
+- (void)userWithBlock:(void (^)(NSString *, NSString *))block
+{
+    //return current know values
+    PFUser *currentUser = [PFUser currentUser];
+    if (block) {
+        block(currentUser[@"photoUrl"], currentUser[@"username"]);
+    }
+    
+    //refresh cached current user object
+    [[PFUser currentUser] fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if (block) {
+            block(object[@"photoUrl"], object[@"username"]);
+        }
+    }];
+}
 @end

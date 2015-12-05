@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
 @property (weak, nonatomic) IBOutlet UITableView *activitiesTableView;
 @property (weak, nonatomic) IBOutlet MWDonutChartView *donutChartView;
+@property (weak, nonatomic) IBOutlet UIImageView *userPhotoImageView;
 
 @property (nonatomic, strong) NSArray<id<MWActivityProtocol>> *activities;
 //@property (nonatomic, strong) NSArray<MWActivitySummary *> *activitiesSummary;
@@ -40,8 +41,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     if ([self.backendService isUserLoggedIn]) {
-        self.logoutButton.enabled = YES;
-        [self downloadActivities];
+        [self userLoggedIn];
     }
     else {
         [self.loginManager presentLoginViewControllerInViewController:self];
@@ -52,6 +52,8 @@
 {
     [self.backendService logout];
     self.logoutButton.enabled = NO;
+    self.userPhotoImageView.image = nil;
+    self.title = nil;
     [self.loginManager presentLoginViewControllerInViewController:self];
 }
 
@@ -69,6 +71,30 @@
             [self.activitiesTableView reloadData];
         }
     }];
+}
+
+- (void)updateUserInfo
+{
+    [self.backendService userWithBlock:^(NSString *photoUrl, NSString *username) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.title = username;
+        });
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photoUrl]]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.userPhotoImageView.image = image;
+            });
+        });
+    }];
+}
+
+- (void)userLoggedIn
+{
+    self.logoutButton.enabled = YES;
+    [self updateUserInfo];
+    [self downloadActivities];
 }
 
 - (void)calculateActivitiesSummary
@@ -96,9 +122,7 @@
 
 - (void)didLoginUserWithLoginManager:(id<MWLoginManagerProtocol>)loginManager
 {
-    self.logoutButton.enabled = YES;
-    
-    [self downloadActivities];
+    [self userLoggedIn];
 }
 
 - (void)loginViewController:(id<MWLoginManagerProtocol>)loginManager didFailToLogInWithError:(NSError *)error

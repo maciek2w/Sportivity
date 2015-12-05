@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ufZ-G1-MC7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ufZ-G1-MC7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -34,6 +36,14 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jWF-BM-tB3" customClass="MWRoundImageView">
+                                <rect key="frame" x="250" y="75" width="100" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="WFO-t7-idL"/>
+                                    <constraint firstAttribute="width" secondItem="jWF-BM-tB3" secondAttribute="height" multiplier="1:1" id="v2O-Gh-Ivs"/>
+                                </constraints>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1oO-aO-dr5">
                                 <rect key="frame" x="0.0" y="250" width="600" height="286"/>
                                 <animations/>
@@ -76,7 +86,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4d-Mi-Mca" customClass="MWDonutChartView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.13333334029999999" green="0.76862752440000004" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="V8m-Jr-ycO"/>
                                 </constraints>
@@ -85,17 +94,33 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jWF-BM-tB3" firstAttribute="top" secondItem="p4d-Mi-Mca" secondAttribute="top" id="1Vx-dk-Vm5"/>
+                            <constraint firstItem="jWF-BM-tB3" firstAttribute="leading" secondItem="p4d-Mi-Mca" secondAttribute="leading" id="8eM-hH-MqY"/>
                             <constraint firstItem="1oO-aO-dr5" firstAttribute="top" secondItem="p4d-Mi-Mca" secondAttribute="bottom" id="Djd-gk-Xhu"/>
                             <constraint firstItem="1oO-aO-dr5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GG7-lQ-9zp"/>
+                            <constraint firstItem="jWF-BM-tB3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="180" id="IbP-3Y-F8v"/>
+                            <constraint firstAttribute="trailing" secondItem="jWF-BM-tB3" secondAttribute="trailing" constant="180" id="MLi-qd-xWy"/>
                             <constraint firstItem="p4d-Mi-Mca" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YOf-t7-TcS"/>
+                            <constraint firstItem="jWF-BM-tB3" firstAttribute="trailing" secondItem="p4d-Mi-Mca" secondAttribute="trailing" id="eFu-op-uR4"/>
+                            <constraint firstItem="jWF-BM-tB3" firstAttribute="centerY" secondItem="p4d-Mi-Mca" secondAttribute="centerY" id="eXY-DK-VTI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1oO-aO-dr5" secondAttribute="bottom" id="eaR-XD-W5b"/>
                             <constraint firstItem="p4d-Mi-Mca" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fo9-3l-sk4"/>
                             <constraint firstAttribute="trailing" secondItem="1oO-aO-dr5" secondAttribute="trailing" id="g74-uy-WSH"/>
                             <constraint firstAttribute="trailing" secondItem="p4d-Mi-Mca" secondAttribute="trailing" id="glw-3Y-o95"/>
                             <constraint firstItem="1oO-aO-dr5" firstAttribute="top" secondItem="p4d-Mi-Mca" secondAttribute="bottom" id="uCN-i8-BCp"/>
+                            <constraint firstAttribute="topMargin" secondItem="jWF-BM-tB3" secondAttribute="top" id="vOR-9g-UnW"/>
+                            <constraint firstItem="jWF-BM-tB3" firstAttribute="centerX" secondItem="p4d-Mi-Mca" secondAttribute="centerX" id="yIj-Rd-U6b"/>
+                            <constraint firstItem="jWF-BM-tB3" firstAttribute="bottom" secondItem="p4d-Mi-Mca" secondAttribute="bottom" id="yZh-JH-wie"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="1Vx-dk-Vm5"/>
+                                <exclude reference="8eM-hH-MqY"/>
+                                <exclude reference="IbP-3Y-F8v"/>
+                                <exclude reference="MLi-qd-xWy"/>
+                                <exclude reference="eFu-op-uR4"/>
+                                <exclude reference="vOR-9g-UnW"/>
+                                <exclude reference="yZh-JH-wie"/>
                                 <exclude reference="Djd-gk-Xhu"/>
                             </mask>
                         </variation>
@@ -112,6 +137,7 @@
                         <outlet property="activitiesTableView" destination="1oO-aO-dr5" id="qJi-db-hh1"/>
                         <outlet property="donutChartView" destination="p4d-Mi-Mca" id="msQ-6P-VhJ"/>
                         <outlet property="logoutButton" destination="GtR-Lv-wL0" id="pR8-6a-dnv"/>
+                        <outlet property="userPhotoImageView" destination="jWF-BM-tB3" id="zoz-xN-379"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

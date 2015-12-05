@@ -20,6 +20,7 @@
 		D1CA14011C09B3B900CF5147 /* MWBackendSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA14001C09B3B900CF5147 /* MWBackendSelector.m */; };
 		D1F478C41C12F93800342FCD /* MWDonutChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F478C01C12F93800342FCD /* MWDonutChartView.m */; };
 		D1F478C51C12F93800342FCD /* MWGradientColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F478C11C12F93800342FCD /* MWGradientColor.m */; };
+		D1F478C81C1381AB00342FCD /* MWRoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F478C71C1381AB00342FCD /* MWRoundImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		D1F478C11C12F93800342FCD /* MWGradientColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGradientColor.m; sourceTree = "<group>"; };
 		D1F478C21C12F93800342FCD /* MWDonutChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDonutChartView.h; sourceTree = "<group>"; };
 		D1F478C31C12F93800342FCD /* MWGradientColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGradientColor.h; sourceTree = "<group>"; };
+		D1F478C61C1381AB00342FCD /* MWRoundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWRoundImageView.h; path = Sportivity/Library/NWDonutChartView/MWRoundImageView.h; sourceTree = SOURCE_ROOT; };
+		D1F478C71C1381AB00342FCD /* MWRoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MWRoundImageView.m; path = Sportivity/Library/NWDonutChartView/MWRoundImageView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 		D1C57BEE1C0CD8A800D25501 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D1F478C61C1381AB00342FCD /* MWRoundImageView.h */,
+				D1F478C71C1381AB00342FCD /* MWRoundImageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				D1CA13FD1C09B29300CF5147 /* MWParseLoginManager.m in Sources */,
 				D1CA13D61C09AD2400CF5147 /* AppDelegate.m in Sources */,
 				D1CA13F91C09AEBD00CF5147 /* MWParseBackendService.m in Sources */,
+				D1F478C81C1381AB00342FCD /* MWRoundImageView.m in Sources */,
 				D1CA13D31C09AD2400CF5147 /* main.m in Sources */,
 				D1CA14011C09B3B900CF5147 /* MWBackendSelector.m in Sources */,
 				D1F478C51C12F93800342FCD /* MWGradientColor.m in Sources */,
