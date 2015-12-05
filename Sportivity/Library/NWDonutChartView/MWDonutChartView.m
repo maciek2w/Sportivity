@@ -22,6 +22,7 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
 @property (nonatomic, assign) double totalSum;
 @property (nonatomic, strong) NSArray *sortedValues;
 @property (nonatomic, strong) MWGradientColor *gradient;
+@property (nonatomic, strong) NSMutableArray *shapes;
 @end
 
 @implementation MWDonutChartView
@@ -64,6 +65,15 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
     [self updateLayers];
 }
 
+- (NSMutableArray *)shapes
+{
+    if (_shapes == nil) {
+        _shapes = [NSMutableArray array];
+    }
+    
+    return _shapes;
+}
+
 - (void)sortValues:(NSDictionary<NSString *,NSNumber *> *)data
 {
     NSMutableArray *values = [NSMutableArray array];
@@ -84,6 +94,12 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
 
 - (void)updateLayers
 {
+    for (CAShapeLayer *shape in self.shapes) {
+        [shape removeFromSuperlayer];
+    }
+    
+    self.shapes = nil;
+    
     CGFloat radiusExternal = CGRectGetHeight(self.bounds) / 2.0 - self.outerRadiusMargin;
     CGFloat radiusInternal = self.percentageInnerCutout * radiusExternal;
 
@@ -124,6 +140,7 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
         shape.strokeColor = shape.fillColor;
         
         [self.layer addSublayer:shape];
+        [self.shapes addObject:shape];
         startAngle = endAngle;
         
         NSLog(@"type: %@ value: %.02f color:%@", key, doubleValue / self.totalSum, color);
