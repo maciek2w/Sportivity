@@ -19,7 +19,7 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
 }
 
 @interface MWDonutChartView ()
-@property (nonatomic, assign) double totalTime;
+@property (nonatomic, assign) double totalSum;
 @property (nonatomic, strong) NSArray *sortedValues;
 @property (nonatomic, strong) MWGradientColor *gradient;
 @end
@@ -68,14 +68,14 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
 {
     NSMutableArray *values = [NSMutableArray array];
     
-     __block CGFloat totalTime = 0;
+     __block CGFloat totalSum = 0;
     
     [data enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSNumber * _Nonnull value, BOOL * _Nonnull stop) {
-        totalTime += [value doubleValue];
+        totalSum += [value doubleValue];
         [values addObject:@{@"title": key, @"value": value}];
     }];
     
-    self.totalTime = totalTime;
+    self.totalSum = totalSum;
     
     self.sortedValues = [values sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
         return [obj1[@"value"] compare:obj2[@"value"]] == NSOrderedAscending;
@@ -95,7 +95,7 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
         NSNumber *value = obj[@"value"];
         
         double doubleValue = [value doubleValue];
-        CGFloat endAngle = startAngle + (M_PI * 2 * doubleValue / self.totalTime);
+        CGFloat endAngle = startAngle + (M_PI * 2 * doubleValue / self.totalSum);
         
         CGFloat colorOffset = (CGFloat)idx / valuesCount;
         
@@ -126,7 +126,7 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
         [self.layer addSublayer:shape];
         startAngle = endAngle;
         
-        NSLog(@"type: %@ value: %.02f color:%@", key, doubleValue / self.totalTime, color);
+        NSLog(@"type: %@ value: %.02f color:%@", key, doubleValue / self.totalSum, color);
     }];
 }
 
