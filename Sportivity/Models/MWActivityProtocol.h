@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol MWActivityProtocol <NSObject>
-@property (nonatomic, strong) NSString *type;
-@property (nonatomic, strong) NSDate *startAt;
-@property (nonatomic, strong) NSString *endsAt;
+
+- (id)objectForKeyedSubscript:(NSString *)key;
+- (void)setObject:(id)object forKeyedSubscript:(NSString *)key;
 
 @end

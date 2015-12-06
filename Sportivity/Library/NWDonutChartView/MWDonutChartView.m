@@ -20,7 +20,6 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
 
 @interface MWDonutChartView ()
 @property (nonatomic, assign) double totalSum;
-@property (nonatomic, strong) NSArray *sortedValues;
 @property (nonatomic, strong) MWGradientColor *gradient;
 @property (nonatomic, strong) NSMutableArray *shapes;
 @end
@@ -55,13 +54,13 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
                                                        endColor:[UIColor colorWithRed:83.0/255.0 green:200.0/255.0 blue:14.0/255.0 alpha:1]]; //53C80E
 }
 
-- (void)setData:(NSDictionary<NSString *,NSNumber *> *)data
+- (void)setData:(NSArray<id<MWDonutChartViewItemProtocol>> *)data
 {
     [self willChangeValueForKey:NSStringFromSelector(@selector(data))];
     _data = data;
     [self didChangeValueForKey:NSStringFromSelector(@selector(data))];
     
-    [self sortValues:_data];
+    [self calculateTotalSumWithData:_data];
     [self updateLayers];
 }
 
@@ -74,22 +73,15 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
     return _shapes;
 }
 
-- (void)sortValues:(NSDictionary<NSString *,NSNumber *> *)data
+- (void)calculateTotalSumWithData:(NSArray<id<MWDonutChartViewItemProtocol>> *)data
 {
-    NSMutableArray *values = [NSMutableArray array];
+    CGFloat totalSum = 0;
     
-     __block CGFloat totalSum = 0;
-    
-    [data enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSNumber * _Nonnull value, BOOL * _Nonnull stop) {
-        totalSum += [value doubleValue];
-        [values addObject:@{@"title": key, @"value": value}];
-    }];
+    for (id<MWDonutChartViewItemProtocol> obj in data) {
+        totalSum += obj.donutChartSegmentValue;
+    }
     
     self.totalSum = totalSum;
-    
-    self.sortedValues = [values sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
-        return [obj1[@"value"] compare:obj2[@"value"]] == NSOrderedAscending;
-    }];
 }
 
 - (void)updateLayers
@@ -104,14 +96,15 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
     CGFloat radiusInternal = self.percentageInnerCutout * radiusExternal;
 
     __block CGFloat startAngle = - M_PI_2;
-    NSInteger valuesCount = [self.sortedValues count];
+    NSInteger valuesCount = [self.data count];
     
-    [self.sortedValues enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *key = obj[@"title"];
-        NSNumber *value = obj[@"value"];
+    NSMutableDictionary *colorAssignment = [[NSMutableDictionary alloc] init];
+    
+    [self.data enumerateObjectsUsingBlock:^(id<MWDonutChartViewItemProtocol>  _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *key = item.donutChartSegmentTitle;
+        CGFloat value = item.donutChartSegmentValue;
         
-        double doubleValue = [value doubleValue];
-        CGFloat endAngle = startAngle + (M_PI * 2 * doubleValue / self.totalSum);
+        CGFloat endAngle = startAngle + (M_PI * 2 * value / self.totalSum);
         
         CGFloat colorOffset = valuesCount > 0 ? (CGFloat)idx / (valuesCount - 1) : 0;
         
@@ -141,9 +134,10 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
         
         [self.layer addSublayer:shape];
         [self.shapes addObject:shape];
+        colorAssignment[key] = color;
         startAngle = endAngle;
         
-        NSLog(@"type: %@ value: %.02f color:%@", key, doubleValue / self.totalSum, color);
+        NSLog(@"type: %@ value: %.02f color:%@", key, value / self.totalSum, color);
     }];
 }
 

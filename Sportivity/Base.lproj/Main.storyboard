@@ -61,7 +61,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zYA-Rn-vLZ">
@@ -114,6 +114,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Djd-gk-Xhu"/>
                                 <exclude reference="1Vx-dk-Vm5"/>
                                 <exclude reference="8eM-hH-MqY"/>
                                 <exclude reference="IbP-3Y-F8v"/>
@@ -121,7 +122,6 @@
                                 <exclude reference="eFu-op-uR4"/>
                                 <exclude reference="vOR-9g-UnW"/>
                                 <exclude reference="yZh-JH-wie"/>
-                                <exclude reference="Djd-gk-Xhu"/>
                             </mask>
                         </variation>
                     </view>
