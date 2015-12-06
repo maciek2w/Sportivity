@@ -51,8 +51,8 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
 {
     self.percentageInnerCutout = 0.5;
     self.outerRadiusMargin = 20.0;
-    self.gradient = [[MWGradientColor alloc] initWithStartColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1]
-                                                       endColor:[UIColor colorWithRed:0 green:0 blue:1 alpha:1]];
+    self.gradient = [[MWGradientColor alloc] initWithStartColor:[UIColor colorWithRed:217.0/255.0 green:15.0/255.0 blue:43.0/255.0 alpha:1] //D90F2B
+                                                       endColor:[UIColor colorWithRed:83.0/255.0 green:200.0/255.0 blue:14.0/255.0 alpha:1]]; //53C80E
 }
 
 - (void)setData:(NSDictionary<NSString *,NSNumber *> *)data
@@ -113,7 +113,7 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
         double doubleValue = [value doubleValue];
         CGFloat endAngle = startAngle + (M_PI * 2 * doubleValue / self.totalSum);
         
-        CGFloat colorOffset = (CGFloat)idx / valuesCount;
+        CGFloat colorOffset = valuesCount > 0 ? (CGFloat)idx / (valuesCount - 1) : 0;
         
         UIColor *color = [self.gradient getColorWithOffset:colorOffset];
         
