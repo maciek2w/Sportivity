@@ -11,6 +11,7 @@
 #import "MWActivitiesManger.h"
 #import "MWActivitySummary.h"
 #import "MWDonutChartView.h"
+#import "MWActivitiesTableViewCell.h"
 
 @interface MWMainViewController () <MWLoginManagerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutButton;
@@ -121,14 +122,19 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView willDisplayCell:(MWActivitiesTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id<MWActivityProtocol> activity = self.activitiesManager[indexPath.row];
     
-    cell.textLabel.text = activity[@"type"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",
-                                 [self.activityDateFormatter stringFromDate:activity[@"startsAt"]],
-                                 [self.activityDateFormatter stringFromDate:activity[@"endsAt"]]];
+    NSString *type = activity[@"type"];
+    
+    MWActivitySummary *activitySummary = [self.activitiesManager activitySummaryForType:type];
+    
+    cell.colorIndicator.backgroundColor = activitySummary.donutChartSegmentColor;
+    cell.typeLabel.text = type;
+    cell.datesLabel.text = [NSString stringWithFormat:@"%@ - %@",
+                            [self.activityDateFormatter stringFromDate:activity[@"startsAt"]],
+                            [self.activityDateFormatter stringFromDate:activity[@"endsAt"]]];
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "MWDonutChartView.h"
-#import "MWGradientColor.h"
 
 CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloat length)
 {
@@ -20,7 +19,6 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
 
 @interface MWDonutChartView ()
 @property (nonatomic, assign) double totalSum;
-@property (nonatomic, strong) MWGradientColor *gradient;
 @property (nonatomic, strong) NSMutableArray *shapes;
 @end
 
@@ -50,8 +48,6 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
 {
     self.percentageInnerCutout = 0.5;
     self.outerRadiusMargin = 20.0;
-    self.gradient = [[MWGradientColor alloc] initWithStartColor:[UIColor colorWithRed:217.0/255.0 green:15.0/255.0 blue:43.0/255.0 alpha:1] //D90F2B
-                                                       endColor:[UIColor colorWithRed:83.0/255.0 green:200.0/255.0 blue:14.0/255.0 alpha:1]]; //53C80E
 }
 
 - (void)setData:(NSArray<id<MWDonutChartViewItemProtocol>> *)data
@@ -96,19 +92,12 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
     CGFloat radiusInternal = self.percentageInnerCutout * radiusExternal;
 
     __block CGFloat startAngle = - M_PI_2;
-    NSInteger valuesCount = [self.data count];
-    
-    NSMutableDictionary *colorAssignment = [[NSMutableDictionary alloc] init];
     
     [self.data enumerateObjectsUsingBlock:^(id<MWDonutChartViewItemProtocol>  _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *key = item.donutChartSegmentTitle;
         CGFloat value = item.donutChartSegmentValue;
         
         CGFloat endAngle = startAngle + (M_PI * 2 * value / self.totalSum);
-        
-        CGFloat colorOffset = valuesCount > 0 ? (CGFloat)idx / (valuesCount - 1) : 0;
-        
-        UIColor *color = [self.gradient getColorWithOffset:colorOffset];
         
         UIBezierPath *path = [UIBezierPath bezierPath];
         [path moveToPoint:calculateCGPointFromCGPoint(self.center, startAngle, radiusInternal)];
@@ -129,15 +118,14 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
         
         CAShapeLayer *shape = [CAShapeLayer layer];
         shape.path = path.CGPath;
-        shape.fillColor = color.CGColor;
+        shape.fillColor = item.donutChartSegmentColor.CGColor;
         shape.strokeColor = shape.fillColor;
         
         [self.layer addSublayer:shape];
         [self.shapes addObject:shape];
-        colorAssignment[key] = color;
         startAngle = endAngle;
         
-        NSLog(@"type: %@ value: %.02f color:%@", key, value / self.totalSum, color);
+        NSLog(@"type: %@ value: %.02f color:%@", key, value / self.totalSum, item.donutChartSegmentColor);
     }];
 }
 

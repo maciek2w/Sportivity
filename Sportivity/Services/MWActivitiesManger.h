@@ -19,4 +19,6 @@
 - (NSInteger) count;
 - (id<MWActivityProtocol>) objectAtIndexedSubscript:(NSUInteger)idx;
 
+- (MWActivitySummary *)activitySummaryForType:(NSString *)type;
+
 @end

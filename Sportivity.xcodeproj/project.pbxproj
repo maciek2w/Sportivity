@@ -20,6 +20,7 @@
 		D1CA13FD1C09B29300CF5147 /* MWParseLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA13FC1C09B29300CF5147 /* MWParseLoginManager.m */; };
 		D1CA14011C09B3B900CF5147 /* MWBackendSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA14001C09B3B900CF5147 /* MWBackendSelector.m */; };
 		D1F01D4C1C14C5BC00FF1B95 /* MWActivitiesManger.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F01D4B1C14C5BC00FF1B95 /* MWActivitiesManger.m */; };
+		D1F01D531C15FEC000FF1B95 /* MWActivitiesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F01D521C15FEC000FF1B95 /* MWActivitiesTableViewCell.m */; };
 		D1F478C41C12F93800342FCD /* MWDonutChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F478C01C12F93800342FCD /* MWDonutChartView.m */; };
 		D1F478C51C12F93800342FCD /* MWGradientColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F478C11C12F93800342FCD /* MWGradientColor.m */; };
 		D1F478C81C1381AB00342FCD /* MWRoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F478C71C1381AB00342FCD /* MWRoundImageView.m */; };
@@ -67,6 +68,8 @@
 		D1F01D4A1C14C5BC00FF1B95 /* MWActivitiesManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWActivitiesManger.h; sourceTree = "<group>"; };
 		D1F01D4B1C14C5BC00FF1B95 /* MWActivitiesManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWActivitiesManger.m; sourceTree = "<group>"; };
 		D1F01D4D1C14CC6200FF1B95 /* MWDonutChartViewItemProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDonutChartViewItemProtocol.h; sourceTree = "<group>"; };
+		D1F01D511C15FEC000FF1B95 /* MWActivitiesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWActivitiesTableViewCell.h; sourceTree = "<group>"; };
+		D1F01D521C15FEC000FF1B95 /* MWActivitiesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWActivitiesTableViewCell.m; sourceTree = "<group>"; };
 		D1F478C01C12F93800342FCD /* MWDonutChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWDonutChartView.m; sourceTree = "<group>"; };
 		D1F478C11C12F93800342FCD /* MWGradientColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGradientColor.m; sourceTree = "<group>"; };
 		D1F478C21C12F93800342FCD /* MWDonutChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWDonutChartView.h; sourceTree = "<group>"; };
@@ -117,6 +120,8 @@
 				D1C57BEA1C0B62A900D25501 /* MWActivitySummary.h */,
 				D1C57BEB1C0B62A900D25501 /* MWActivitySummary.m */,
 				D1C57BED1C0CB68A00D25501 /* MWActivityProtocol.h */,
+				D1F01D511C15FEC000FF1B95 /* MWActivitiesTableViewCell.h */,
+				D1F01D521C15FEC000FF1B95 /* MWActivitiesTableViewCell.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				D1C57BEC1C0B62A900D25501 /* MWActivitySummary.m in Sources */,
 				D1F478C81C1381AB00342FCD /* MWRoundImageView.m in Sources */,
 				D1CA13D31C09AD2400CF5147 /* main.m in Sources */,
+				D1F01D531C15FEC000FF1B95 /* MWActivitiesTableViewCell.m in Sources */,
 				D1CA14011C09B3B900CF5147 /* MWBackendSelector.m in Sources */,
 				D1F01D4C1C14C5BC00FF1B95 /* MWActivitiesManger.m in Sources */,
 				D1F478C51C12F93800342FCD /* MWGradientColor.m in Sources */,
