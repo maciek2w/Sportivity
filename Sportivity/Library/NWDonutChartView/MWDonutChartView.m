@@ -11,8 +11,8 @@
 CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloat length)
 {
     CGPoint endPoint;
-    endPoint.x = roundf(cgPoint.x + sinf(angle + M_PI_2) * length);
-    endPoint.y = roundf(cgPoint.y - cosf(angle + M_PI_2) * length);
+    endPoint.x = cgPoint.x + sinf(angle + M_PI_2) * length;
+    endPoint.y = cgPoint.y - cosf(angle + M_PI_2) * length;
     
     return endPoint;
 }
