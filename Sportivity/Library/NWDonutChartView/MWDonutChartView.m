@@ -57,7 +57,7 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
     [self didChangeValueForKey:NSStringFromSelector(@selector(data))];
     
     [self calculateTotalSumWithData:_data];
-    [self updateLayers];
+    [self setNeedsLayout];
 }
 
 - (NSMutableArray *)shapes
@@ -80,6 +80,15 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
     self.totalSum = totalSum;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if (self.data) {
+        [self updateLayers];
+    }
+}
+
 - (void)updateLayers
 {
     for (CAShapeLayer *shape in self.shapes) {
@@ -93,22 +102,24 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
 
     __block CGFloat startAngle = - M_PI_2;
     
+    CGPoint center = CGPointMake(CGRectGetWidth(self.bounds) / 2.0, CGRectGetHeight(self.bounds) / 2.0);
+    
     [self.data enumerateObjectsUsingBlock:^(id<MWDonutChartViewItemProtocol>  _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
         CGFloat value = item.donutChartSegmentValue;
         
         CGFloat endAngle = startAngle + (M_PI * 2 * value / self.totalSum);
         
         UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:calculateCGPointFromCGPoint(self.center, startAngle, radiusInternal)];
-        [path addLineToPoint:calculateCGPointFromCGPoint(self.center, startAngle, radiusExternal)];
-        [path addArcWithCenter:self.center
+        [path moveToPoint:calculateCGPointFromCGPoint(center, startAngle, radiusInternal)];
+        [path addLineToPoint:calculateCGPointFromCGPoint(center, startAngle, radiusExternal)];
+        [path addArcWithCenter:center
                         radius:radiusExternal
                     startAngle:startAngle
                       endAngle:endAngle
                      clockwise:YES];
-        [path addLineToPoint:calculateCGPointFromCGPoint(self.center, endAngle, radiusInternal)];
+        [path addLineToPoint:calculateCGPointFromCGPoint(center, endAngle, radiusInternal)];
         
-        [path addArcWithCenter:self.center
+        [path addArcWithCenter:center
                         radius:radiusInternal
                     startAngle:endAngle
                       endAngle:startAngle
