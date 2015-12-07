@@ -94,7 +94,6 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
     __block CGFloat startAngle = - M_PI_2;
     
     [self.data enumerateObjectsUsingBlock:^(id<MWDonutChartViewItemProtocol>  _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *key = item.donutChartSegmentTitle;
         CGFloat value = item.donutChartSegmentValue;
         
         CGFloat endAngle = startAngle + (M_PI * 2 * value / self.totalSum);
@@ -124,8 +123,6 @@ CGPoint calculateCGPointFromCGPoint(const CGPoint cgPoint, CGFloat angle, CGFloa
         [self.layer addSublayer:shape];
         [self.shapes addObject:shape];
         startAngle = endAngle;
-        
-        NSLog(@"type: %@ value: %.02f color:%@", key, value / self.totalSum, item.donutChartSegmentColor);
     }];
 }
 
