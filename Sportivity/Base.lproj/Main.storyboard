@@ -37,6 +37,13 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="ugz-WY-GDF">
+                                <rect key="frame" x="200" y="267" width="200" height="3"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2pm-jE-k72"/>
+                                </constraints>
+                            </progressView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jWF-BM-tB3" customClass="MWRoundImageView">
                                 <rect key="frame" x="600" y="75" width="100" height="100"/>
                                 <animations/>
@@ -136,9 +143,11 @@
                         <constraints>
                             <constraint firstItem="jWF-BM-tB3" firstAttribute="top" secondItem="p4d-Mi-Mca" secondAttribute="top" id="1Vx-dk-Vm5"/>
                             <constraint firstItem="jWF-BM-tB3" firstAttribute="leading" secondItem="p4d-Mi-Mca" secondAttribute="leading" id="8eM-hH-MqY"/>
+                            <constraint firstItem="ugz-WY-GDF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C4V-WZ-wTo"/>
                             <constraint firstItem="1oO-aO-dr5" firstAttribute="top" secondItem="p4d-Mi-Mca" secondAttribute="bottom" id="Djd-gk-Xhu"/>
                             <constraint firstAttribute="trailing" secondItem="jWF-BM-tB3" secondAttribute="leading" id="F06-2J-Bwr"/>
                             <constraint firstItem="1oO-aO-dr5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GG7-lQ-9zp"/>
+                            <constraint firstItem="ugz-WY-GDF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="IQg-dP-o5N"/>
                             <constraint firstItem="jWF-BM-tB3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="180" id="IbP-3Y-F8v"/>
                             <constraint firstAttribute="trailing" secondItem="jWF-BM-tB3" secondAttribute="trailing" constant="180" id="MLi-qd-xWy"/>
                             <constraint firstItem="p4d-Mi-Mca" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WWw-6s-7u4"/>
@@ -183,6 +192,7 @@
                         <outlet property="activitiesTableView" destination="1oO-aO-dr5" id="qJi-db-hh1"/>
                         <outlet property="donutChartView" destination="p4d-Mi-Mca" id="msQ-6P-VhJ"/>
                         <outlet property="logoutButton" destination="GtR-Lv-wL0" id="pR8-6a-dnv"/>
+                        <outlet property="progressView" destination="ugz-WY-GDF" id="Nhy-DZ-Olc"/>
                         <outlet property="userPhotoImageView" destination="jWF-BM-tB3" id="zoz-xN-379"/>
                         <outlet property="userPhotoImageViewConstraintOutsideView" destination="F06-2J-Bwr" id="ldZ-Hw-qTD"/>
                     </connections>

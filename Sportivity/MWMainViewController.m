@@ -18,11 +18,14 @@
 @property (weak, nonatomic) IBOutlet UITableView *activitiesTableView;
 @property (weak, nonatomic) IBOutlet MWDonutChartView *donutChartView;
 @property (weak, nonatomic) IBOutlet UIImageView *userPhotoImageView;
-
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *userPhotoImageViewConstraintOutsideView;
+
 
 @property (nonatomic, strong) MWActivitiesManger *activitiesManager;
 @property (nonatomic, strong) NSDateFormatter *activityDateFormatter;
+
+@property (nonatomic, assign) BOOL isFirstTimePresented;
 
 @end
 
@@ -38,16 +41,19 @@
     self.activityDateFormatter.timeStyle = NSDateFormatterShortStyle;
     self.activityDateFormatter.dateStyle = NSDateFormatterShortStyle;
     
-    [self hideDonutChartAndActivitiesWithAnimation:YES];
+    [self hideDataViewsWithAnimation:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if ([self.backendService isUserLoggedIn]) {
-        [self userLoggedIn];
-    }
-    else {
-        [self.loginManager presentLoginViewControllerInViewController:self];
+    if (self.isFirstTimePresented == NO) {
+        self.isFirstTimePresented = YES;
+        if ([self.backendService isUserLoggedIn]) {
+            [self userLoggedIn];
+        }
+        else {
+            [self.loginManager presentLoginViewControllerInViewController:self];
+        }
     }
 }
 
@@ -59,23 +65,22 @@
     self.title = nil;
     [self.loginManager presentLoginViewControllerInViewController:self];
     [self hideUserPhotoWithAnimation:NO];
-    [self hideDonutChartAndActivitiesWithAnimation:NO];
+    [self hideDataViewsWithAnimation:NO];
 }
 
 - (void)downloadActivities
 {
-    //TODO add linear progress indicator
-    
     [self.backendService downloadActivitiesWithBlock:^(NSArray<id<MWActivityProtocol>> *activities, NSError *error) {
         if (error) {
             //TODO add error message
         }
         else {
+            [self.progressView setProgress:0.66 animated:NO];
             self.activitiesManager = [[MWActivitiesManger alloc] initWithActivities:activities];
             self.donutChartView.data = self.activitiesManager.activitiesSummary;
             [self.activitiesTableView reloadData];
             
-            [self showDonutChartAndActivitiesWithAnimation:YES];
+            [self showDataViewsWithAnimation:YES];
         }
     }];
 }
@@ -119,10 +124,12 @@
                      animations:^{
                          [self.view addConstraint:self.userPhotoImageViewConstraintOutsideView];
                          [self.view layoutIfNeeded];
-                     } completion:NULL];
+                     } completion:^(BOOL finished) {
+                         self.userPhotoImageView.image = nil;
+                     }];
 }
 
-- (void)hideDonutChartAndActivitiesWithAnimation:(BOOL)animated
+- (void)hideDataViewsWithAnimation:(BOOL)animated
 {
     [UIView animateWithDuration:animated ? 1.0 : 0.0
                      animations:^{
@@ -131,10 +138,11 @@
                      }];
 }
 
-- (void)showDonutChartAndActivitiesWithAnimation:(BOOL)animated
+- (void)showDataViewsWithAnimation:(BOOL)animated
 {
     [UIView animateWithDuration:animated ? 1.0 : 0.0
                      animations:^{
+                         self.progressView.alpha = 0.0;
                          self.donutChartView.alpha = 1.0;
                          self.activitiesTableView.alpha = 1.0;
                      }];
@@ -142,6 +150,9 @@
 
 - (void)userLoggedIn
 {
+    [self.progressView setProgress:0];
+    self.progressView.alpha = 1.0;
+    [self.progressView setProgress:0.33 animated:NO];
     self.logoutButton.enabled = YES;
     [self updateUserInfo];
     [self downloadActivities];
