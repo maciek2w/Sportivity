@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jWF-BM-tB3" customClass="MWRoundImageView">
-                                <rect key="frame" x="250" y="75" width="100" height="100"/>
+                                <rect key="frame" x="600" y="75" width="100" height="100"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="WFO-t7-idL"/>
@@ -123,10 +123,11 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4d-Mi-Mca" customClass="MWDonutChartView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+                                <rect key="frame" x="175" y="0.0" width="250" height="250"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="V8m-Jr-ycO"/>
+                                    <constraint firstAttribute="width" secondItem="p4d-Mi-Mca" secondAttribute="height" id="a0P-mk-wLV"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -136,10 +137,13 @@
                             <constraint firstItem="jWF-BM-tB3" firstAttribute="top" secondItem="p4d-Mi-Mca" secondAttribute="top" id="1Vx-dk-Vm5"/>
                             <constraint firstItem="jWF-BM-tB3" firstAttribute="leading" secondItem="p4d-Mi-Mca" secondAttribute="leading" id="8eM-hH-MqY"/>
                             <constraint firstItem="1oO-aO-dr5" firstAttribute="top" secondItem="p4d-Mi-Mca" secondAttribute="bottom" id="Djd-gk-Xhu"/>
+                            <constraint firstAttribute="trailing" secondItem="jWF-BM-tB3" secondAttribute="leading" id="F06-2J-Bwr"/>
                             <constraint firstItem="1oO-aO-dr5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GG7-lQ-9zp"/>
                             <constraint firstItem="jWF-BM-tB3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="180" id="IbP-3Y-F8v"/>
                             <constraint firstAttribute="trailing" secondItem="jWF-BM-tB3" secondAttribute="trailing" constant="180" id="MLi-qd-xWy"/>
+                            <constraint firstItem="p4d-Mi-Mca" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WWw-6s-7u4"/>
                             <constraint firstItem="p4d-Mi-Mca" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YOf-t7-TcS"/>
+                            <constraint firstItem="jWF-BM-tB3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" priority="750" id="ZIl-t4-Ytl"/>
                             <constraint firstItem="jWF-BM-tB3" firstAttribute="trailing" secondItem="p4d-Mi-Mca" secondAttribute="trailing" id="eFu-op-uR4"/>
                             <constraint firstItem="jWF-BM-tB3" firstAttribute="centerY" secondItem="p4d-Mi-Mca" secondAttribute="centerY" id="eXY-DK-VTI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1oO-aO-dr5" secondAttribute="bottom" id="eaR-XD-W5b"/>
@@ -148,11 +152,13 @@
                             <constraint firstAttribute="trailing" secondItem="p4d-Mi-Mca" secondAttribute="trailing" id="glw-3Y-o95"/>
                             <constraint firstItem="1oO-aO-dr5" firstAttribute="top" secondItem="p4d-Mi-Mca" secondAttribute="bottom" id="uCN-i8-BCp"/>
                             <constraint firstAttribute="topMargin" secondItem="jWF-BM-tB3" secondAttribute="top" id="vOR-9g-UnW"/>
-                            <constraint firstItem="jWF-BM-tB3" firstAttribute="centerX" secondItem="p4d-Mi-Mca" secondAttribute="centerX" id="yIj-Rd-U6b"/>
+                            <constraint firstItem="jWF-BM-tB3" firstAttribute="centerX" secondItem="p4d-Mi-Mca" secondAttribute="centerX" priority="750" id="yIj-Rd-U6b"/>
                             <constraint firstItem="jWF-BM-tB3" firstAttribute="bottom" secondItem="p4d-Mi-Mca" secondAttribute="bottom" id="yZh-JH-wie"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="fo9-3l-sk4"/>
+                                <exclude reference="glw-3Y-o95"/>
                                 <exclude reference="Djd-gk-Xhu"/>
                                 <exclude reference="1Vx-dk-Vm5"/>
                                 <exclude reference="8eM-hH-MqY"/>
@@ -160,6 +166,7 @@
                                 <exclude reference="MLi-qd-xWy"/>
                                 <exclude reference="eFu-op-uR4"/>
                                 <exclude reference="vOR-9g-UnW"/>
+                                <exclude reference="yIj-Rd-U6b"/>
                                 <exclude reference="yZh-JH-wie"/>
                             </mask>
                         </variation>
@@ -177,6 +184,7 @@
                         <outlet property="donutChartView" destination="p4d-Mi-Mca" id="msQ-6P-VhJ"/>
                         <outlet property="logoutButton" destination="GtR-Lv-wL0" id="pR8-6a-dnv"/>
                         <outlet property="userPhotoImageView" destination="jWF-BM-tB3" id="zoz-xN-379"/>
+                        <outlet property="userPhotoImageViewConstraintOutsideView" destination="F06-2J-Bwr" id="ldZ-Hw-qTD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

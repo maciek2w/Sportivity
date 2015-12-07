@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet MWDonutChartView *donutChartView;
 @property (weak, nonatomic) IBOutlet UIImageView *userPhotoImageView;
 
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *userPhotoImageViewConstraintOutsideView;
+
 @property (nonatomic, strong) MWActivitiesManger *activitiesManager;
 @property (nonatomic, strong) NSDateFormatter *activityDateFormatter;
 
@@ -35,6 +37,8 @@
     self.activityDateFormatter = [[NSDateFormatter alloc] init];
     self.activityDateFormatter.timeStyle = NSDateFormatterShortStyle;
     self.activityDateFormatter.dateStyle = NSDateFormatterShortStyle;
+    
+    [self hideDonutChartAndActivitiesWithAnimation:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -54,6 +58,8 @@
     self.userPhotoImageView.image = nil;
     self.title = nil;
     [self.loginManager presentLoginViewControllerInViewController:self];
+    [self hideUserPhotoWithAnimation:NO];
+    [self hideDonutChartAndActivitiesWithAnimation:NO];
 }
 
 - (void)downloadActivities
@@ -68,6 +74,8 @@
             self.activitiesManager = [[MWActivitiesManger alloc] initWithActivities:activities];
             self.donutChartView.data = self.activitiesManager.activitiesSummary;
             [self.activitiesTableView reloadData];
+            
+            [self showDonutChartAndActivitiesWithAnimation:YES];
         }
     }];
 }
@@ -83,10 +91,53 @@
             UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photoUrl]]];
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                if (image) {
+                    [self.view layoutIfNeeded];
+                    [UIView animateWithDuration:1.0
+                                          delay:0.0
+                                        options:UIViewAnimationOptionCurveEaseInOut
+                                     animations:^{
+                                         [self.view removeConstraint:self.userPhotoImageViewConstraintOutsideView];
+                                         [self.view layoutIfNeeded];
+                                     } completion:NULL];
+                }
+                else {
+                    [self hideUserPhotoWithAnimation:YES];
+                }
                 self.userPhotoImageView.image = image;
             });
         });
     }];
+}
+
+- (void)hideUserPhotoWithAnimation:(BOOL)animated
+{
+    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:animated ? 1.0 : 0.0
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         [self.view addConstraint:self.userPhotoImageViewConstraintOutsideView];
+                         [self.view layoutIfNeeded];
+                     } completion:NULL];
+}
+
+- (void)hideDonutChartAndActivitiesWithAnimation:(BOOL)animated
+{
+    [UIView animateWithDuration:animated ? 1.0 : 0.0
+                     animations:^{
+                         self.donutChartView.alpha = 0.0;
+                         self.activitiesTableView.alpha = 0.0;
+                     }];
+}
+
+- (void)showDonutChartAndActivitiesWithAnimation:(BOOL)animated
+{
+    [UIView animateWithDuration:animated ? 1.0 : 0.0
+                     animations:^{
+                         self.donutChartView.alpha = 1.0;
+                         self.activitiesTableView.alpha = 1.0;
+                     }];
 }
 
 - (void)userLoggedIn
