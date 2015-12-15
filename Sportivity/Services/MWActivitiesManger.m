@@ -10,6 +10,7 @@
 #import "MWGradientColor.h"
 
 @interface MWActivitiesManger ()
+@property (nonatomic, strong) id<MWBackendServiceProtocol> backendService;
 @property (nonatomic, strong) NSArray<id<MWActivityProtocol>> *activities;
 @property (nonatomic, strong) NSArray<MWActivitySummary *> *activitiesSummary;
 @property (nonatomic, strong) NSDictionary<NSString *, MWActivitySummary *> *activitiesSummaryDict;
@@ -18,18 +19,26 @@
 
 @implementation MWActivitiesManger
 
-- (instancetype)initWithActivities:(NSArray<id<MWActivityProtocol>> *)activities
+- (instancetype)initWithBackendService:(id<MWBackendServiceProtocol>)backendService
 {
     self = [super init];
     if (self) {
-        self.activities = activities;
+        self.backendService = backendService;
         self.gradientColor = [[MWGradientColor alloc] initWithStartColor:[UIColor colorWithRed:217.0/255.0 green:15.0/255.0 blue:43.0/255.0 alpha:1] //D90F2B
                                                                 endColor:[UIColor colorWithRed:83.0/255.0 green:200.0/255.0 blue:14.0/255.0 alpha:1]]; //53C80E
-        
-        [self calculateActivitiesSummary];
     }
     
     return self;
+}
+
+- (void)downloadActivities
+{
+    [self.backendService downloadActivitiesWithBlock:^(NSArray<id<MWActivityProtocol>> *activities, NSError *error) {
+        self.activities = activities;
+        [self calculateActivitiesSummary];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"activitiesManagerData" object:nil];
+    }];
 }
 
 - (void)calculateActivitiesSummary

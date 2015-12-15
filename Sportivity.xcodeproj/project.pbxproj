@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		88442F08F167E7D63F058280 /* libPods-Sportivity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABD24F4D993D8392C13BF97B /* libPods-Sportivity.a */; };
+		D189140C1C1D7FEC001579D2 /* MWSecondScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D189140B1C1D7FEC001579D2 /* MWSecondScreenViewController.m */; };
 		D1C57BEC1C0B62A900D25501 /* MWActivitySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C57BEB1C0B62A900D25501 /* MWActivitySummary.m */; };
 		D1CA13D31C09AD2400CF5147 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA13D21C09AD2400CF5147 /* main.m */; };
 		D1CA13D61C09AD2400CF5147 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CA13D51C09AD2400CF5147 /* AppDelegate.m */; };
@@ -40,6 +41,8 @@
 		135F18EA2F61A679959BDBB1 /* Pods-Sportivity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportivity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sportivity/Pods-Sportivity.debug.xcconfig"; sourceTree = "<group>"; };
 		A3009A6F9836A671B569B5DF /* Pods-Sportivity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sportivity.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sportivity/Pods-Sportivity.release.xcconfig"; sourceTree = "<group>"; };
 		ABD24F4D993D8392C13BF97B /* libPods-Sportivity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sportivity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D189140A1C1D7FEC001579D2 /* MWSecondScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWSecondScreenViewController.h; sourceTree = "<group>"; };
+		D189140B1C1D7FEC001579D2 /* MWSecondScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWSecondScreenViewController.m; sourceTree = "<group>"; };
 		D1C57BE51C0B504600D25501 /* MWLoginManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWLoginManagerDelegate.h; sourceTree = "<group>"; };
 		D1C57BEA1C0B62A900D25501 /* MWActivitySummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWActivitySummary.h; sourceTree = "<group>"; };
 		D1C57BEB1C0B62A900D25501 /* MWActivitySummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWActivitySummary.m; sourceTree = "<group>"; };
@@ -114,6 +117,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D189140D1C1D7FF4001579D2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D1CA13D71C09AD2400CF5147 /* MWMainViewController.h */,
+				D1CA13D81C09AD2400CF5147 /* MWMainViewController.m */,
+				D189140A1C1D7FEC001579D2 /* MWSecondScreenViewController.h */,
+				D189140B1C1D7FEC001579D2 /* MWSecondScreenViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		D1C57BE61C0B61E600D25501 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,14 +172,13 @@
 		D1CA13D01C09AD2400CF5147 /* Sportivity */ = {
 			isa = PBXGroup;
 			children = (
+				D189140D1C1D7FF4001579D2 /* ViewControllers */,
 				D1F478BE1C12F8C700342FCD /* Library */,
 				D1C57BEE1C0CD8A800D25501 /* Views */,
 				D1C57BE61C0B61E600D25501 /* Models */,
 				D1CA13F61C09AE1200CF5147 /* Services */,
 				D1CA13D41C09AD2400CF5147 /* AppDelegate.h */,
 				D1CA13D51C09AD2400CF5147 /* AppDelegate.m */,
-				D1CA13D71C09AD2400CF5147 /* MWMainViewController.h */,
-				D1CA13D81C09AD2400CF5147 /* MWMainViewController.m */,
 				D1CA13DA1C09AD2400CF5147 /* Main.storyboard */,
 				D1CA13DD1C09AD2400CF5147 /* Assets.xcassets */,
 				D1CA13DF1C09AD2400CF5147 /* LaunchScreen.storyboard */,
@@ -384,6 +397,7 @@
 			files = (
 				D1F478C41C12F93800342FCD /* MWDonutChartView.m in Sources */,
 				D1CA13D91C09AD2400CF5147 /* MWMainViewController.m in Sources */,
+				D189140C1C1D7FEC001579D2 /* MWSecondScreenViewController.m in Sources */,
 				D1CA13FD1C09B29300CF5147 /* MWParseLoginManager.m in Sources */,
 				D1CA13D61C09AD2400CF5147 /* AppDelegate.m in Sources */,
 				D1CA13F91C09AEBD00CF5147 /* MWParseBackendService.m in Sources */,

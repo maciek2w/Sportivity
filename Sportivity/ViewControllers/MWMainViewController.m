@@ -8,7 +8,6 @@
 
 #import "MWMainViewController.h"
 #import "MWLoginManagerDelegate.h"
-#import "MWActivitiesManger.h"
 #import "MWActivitySummary.h"
 #import "MWDonutChartView.h"
 #import "MWActivitiesTableViewCell.h"
@@ -21,8 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *userPhotoImageViewConstraintOutsideView;
 
-
-@property (nonatomic, strong) MWActivitiesManger *activitiesManager;
 @property (nonatomic, strong) NSDateFormatter *activityDateFormatter;
 
 @property (nonatomic, assign) BOOL isFirstTimePresented;
@@ -42,6 +39,13 @@
     self.activityDateFormatter.dateStyle = NSDateFormatterShortStyle;
     
     [self hideDataViewsWithAnimation:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:@"activitiesManagerData" object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,6 +61,17 @@
     }
 }
 
+- (void)didReceiveNotification:(NSNotification *)notification
+{
+    [self.progressView setProgress:0.66 animated:NO];
+
+    self.donutChartView.data = self.activitiesManager.activitiesSummary;
+    
+    [self.activitiesTableView reloadData];
+    
+    [self showDataViewsWithAnimation:YES];
+}
+
 - (IBAction)didTapLogout:(id)sender
 {
     [self.backendService logout];
@@ -70,19 +85,7 @@
 
 - (void)downloadActivities
 {
-    [self.backendService downloadActivitiesWithBlock:^(NSArray<id<MWActivityProtocol>> *activities, NSError *error) {
-        if (error) {
-            //TODO add error message
-        }
-        else {
-            [self.progressView setProgress:0.66 animated:NO];
-            self.activitiesManager = [[MWActivitiesManger alloc] initWithActivities:activities];
-            self.donutChartView.data = self.activitiesManager.activitiesSummary;
-            [self.activitiesTableView reloadData];
-            
-            [self showDataViewsWithAnimation:YES];
-        }
-    }];
+    [self.activitiesManager downloadActivities];
 }
 
 - (void)updateUserInfo

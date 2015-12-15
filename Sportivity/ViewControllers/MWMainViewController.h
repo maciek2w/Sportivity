@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MWActivitiesManger.h"
 #import "MWBackendServiceProtocol.h"
 #import "MWLoginManagerProtocol.h"
 
 @interface MWMainViewController : UIViewController
+@property (nonatomic, strong) MWActivitiesManger *activitiesManager;
 @property (nonatomic, strong) id<MWBackendServiceProtocol> backendService;
 @property (nonatomic, strong) id<MWLoginManagerProtocol> loginManager;
 @end

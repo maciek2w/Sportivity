@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "MWActivityProtocol.h"
 #import "MWActivitySummary.h"
+#import "MWBackendServiceProtocol.h"
 
 @interface MWActivitiesManger : NSObject
 
-@property (nonatomic, readonly) NSArray<MWActivitySummary *> *activitiesSummary;;
+@property (nonatomic, readonly) NSArray<MWActivitySummary *> *activitiesSummary;
 
-- (instancetype)initWithActivities:(NSArray<id<MWActivityProtocol>> *)activities;
+- (void)downloadActivities;
+
+- (instancetype)initWithBackendService:(id<MWBackendServiceProtocol>) backendService;
 
 - (NSInteger) count;
 - (id<MWActivityProtocol>) objectAtIndexedSubscript:(NSUInteger)idx;
